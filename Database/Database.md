@@ -2,7 +2,7 @@
 
 ### 🗒 Table of Contents
 
-- [데이터베이스[(https://amused-polyanthus-149.notion.site/e3e1db95a8cb41019d5e0514eb39862e)
+- [데이터베이스](https://amused-polyanthus-149.notion.site/e3e1db95a8cb41019d5e0514eb39862e)
 
 
 - Index
