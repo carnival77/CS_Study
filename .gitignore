@@ -1,0 +1,7 @@
+#intelliJ 설정파일
+.idea
+
+#Eclipse 설정파일
+.classpath
+.project
+.settings/
