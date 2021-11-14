@@ -2,7 +2,7 @@
 
 ### 🗒 Table of Contents
 
-- HTTP 의 GET 과 POST 비교()
+- [HTTP 의 GET 과 POST 비교](https://amused-polyanthus-149.notion.site/HTTP-GET-POST-8af4682b2189466b835f4df1472f3457)
   
 
 - TCP 3-way-handshake
