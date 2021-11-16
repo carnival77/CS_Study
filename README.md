@@ -23,10 +23,10 @@ CS 스터디를 하면서 필요한 CS 지식을 공유하고 작성한 자료�
   
   * 미리 정한 목차에서 사다리타기 게임을 통해서 무작위로 주제를 선정해서 자료 조사
     - 스터디 진행 주제들
-      - 자료구조
-      - 네트워크
-      - 운영체제
-      - 데이터베이스 (현재 진행중)
+      - [자료구조](https://github.com/ffolabear/CS_Study/blob/main/DataStructure/DataStructure.md)
+      - [네트워크](https://github.com/ffolabear/CS_Study/tree/main/Network/Network.md)
+      - [운영체제](https://github.com/ffolabear/CS_Study/tree/main/OS/OS.md)
+      - [데이터베이스](https://github.com/ffolabear/CS_Study/tree/main/Database/Database.md) (현재 진행중)
       - 디자인패턴
       - 알고리즘
       -  _추후 추가예정_
