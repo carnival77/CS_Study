@@ -98,7 +98,7 @@
     <img src="https://user-images.githubusercontent.com/65614734/141940795-f08a4839-64e4-4eeb-ac35-ebdd95b2f461.png" width="50%">
    </div>
    <div align="center">
-      <p>Oracle 데이터베이스의 사원 테이블 스키마</p>
+      <p>&lt; Oracle 데이터베이스의 사원 테이블 스키마 &gt;</p>
    </div>
    
    
@@ -131,7 +131,7 @@
 
     <div align="center">
       <img src="https://user-images.githubusercontent.com/65614734/141943538-c9ac604d-9e9b-41f0-9bc7-362497b1c6dc.png" width="60%">
-      <p>Oracle 사원 테이블의 각 테이블을 참조할 수 있는 외래키와 기본키</p>
+      <p>&lt; Oracle 사원 테이블의 각 테이블을 참조할 수 있는 외래키와 기본키 &gt;</p>
    </div>
    
 
