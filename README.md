@@ -41,11 +41,16 @@ CS 스터디를 하면서 필요한 CS 지식을 공유하고 작성한 자료�
 ## ✅ Commit Rule
 
 * 공유할 자료의 제목은 첫글자를 대문자로 작성
+   + 디렉토리이름은 대문자로 작성
+   + 단어와 단어의 구분은 `camel case`로 작성
+
+  </br>
+  
   ```
   Topic_of_this_week.md
   
   Database.md
-  Index,md
+  Index.md
   ...
   ```
 * `commit message` 는 ` 주제이름 - 진행상황 ` 으로 간략히 작성 
