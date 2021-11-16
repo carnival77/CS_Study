@@ -36,8 +36,31 @@ CS 스터디를 하면서 필요한 CS 지식을 공유하고 작성한 자료�
   * 코딩스터디의 큰 틀은 [한재엽님 깃허브](https://github.com/JaeYeopHan/Interview_Question_for_Beginner)를 참고했습니다. 
 
     
+</br></br>
 
+## ✅ Commit Rule
 
+* 공유할 자료의 제목은 첫글자를 대문자로 작성
+  ```
+  Topic_of_this_week.md
+  
+  Database.md
+  Index,md
+  ...
+  ```
+* `commit message` 는 ` 주제이름 - 진행상황 ` 으로 간략히 작성 
 
+</br></br>
 
+## ✅ Pull Request(PR) Rule
+
+   * PR 제목은 주제이름과 진행상황으로 작성
+     </br>
+     
+     ```
+     데이터베이스 - 데이터베이스 종류 이미지 파일 추가
+     ```
+   * 내용은 작성하지 않아도 됨 
+
+</br></br>
 
