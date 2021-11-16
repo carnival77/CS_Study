@@ -138,3 +138,7 @@
 
 #### SQL?
 > 💡 Structured Query Language, 데이터베이스에서 데이터의 관리를 위해 설계된 프로그래밍 언어
+
+
+</br></br>  
+
