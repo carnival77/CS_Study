@@ -146,3 +146,10 @@
 
 <br><br>  
 
+이미지출처  
+- https://docs.oracle.com/cd/B12037_01/server.101/b10771.pdf
+- https://www.oracletutorial.com/getting-started/oracle-sample-database/
+- https://93jpark.tistory.com/23
+- https://lucy-the-marketer.kr/ko/growth/what-is-database/
+
+<br><br> 
