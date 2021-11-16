@@ -81,9 +81,25 @@
 
 - 구성요소: 행(튜플), 열(속성)
 
+<div align="center">
+   <img src="https://user-images.githubusercontent.com/65614734/141927715-9824d268-2ca7-4b11-bad7-2e425e6dd373.png" width="700px">
+</div>
   
 - 스키마: 데이터베이스의 구조와 제약 조건에 관한 전반적인 명세를 기술한 메타데이터의 집합
     </br></br>
+    
+   
+   <div float="left">
+   <img src="https://user-images.githubusercontent.com/65614734/141940790-80d1eab5-6c5d-48f2-9f2c-269dcfa1cfde.png" width="40%">
+    <img src="https://user-images.githubusercontent.com/65614734/141940795-f08a4839-64e4-4eeb-ac35-ebdd95b2f461.png" width="50%">
+   </div>
+   <div align="center">
+      <p>Oracle 데이터베이스의 사원 테이블 스키마</p>
+   </div>
+   
+   
+   </br></br>
+    
     
     - **외부 스키마(External Schema) = 사용자 뷰(View)**
     </br></br>
@@ -93,16 +109,25 @@
     </br></br>    
     - **내부 스키마(Internal Schema) = 저장 스키마(Storage Schema)**
         - 설계자, 개발자의 관점에서 바라보는 스키마
-
+     
+     </br>
+     
 
 - 키: 테이블에서 특정 행을 유일하게 식별할 수 있게 하는 특징, 열 혹은 복수의 열 모음
     - 테이블의 각 행에는 기본키가(PK, Primary Key) **반드시** 있어야 한다.
-
-
+   
+      </br>
+   
 - 외부키
     - 이용하여 다른 테이블과 링크할 수 있다.
     - 그 값이 다른 테이블의 키 열의 값과 같은 열
     - 참조무결성: 모든 외부 키 값이 참조하는 테이블의 값으로 존재하는 경우
+
+    <div align="center">
+      <img src="https://user-images.githubusercontent.com/65614734/141943538-c9ac604d-9e9b-41f0-9bc7-362497b1c6dc.png" width="60%">
+      <p>Oracle 사원 테이블의 각 테이블을 참조할 수 있는 외래키와 기본키</p>
+   </div>
+   
 
 ### 데이터 베이스의 성능
 
