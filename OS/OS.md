@@ -14,7 +14,7 @@
 - [CPU 스케줄러](https://amused-polyanthus-149.notion.site/CPU-881cbd1482c346e495fe7debca7f1052)
 
 
-- 동기와 비동기의 차이
+- [동기와 비동기의 차이](https://devblog77.tistory.com/15?category=1015929)
   
 
 - [프로세스 동기화](https://amused-polyanthus-149.notion.site/fee6e86b906a41a59dbeaceeab37b867)
