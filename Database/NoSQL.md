@@ -9,9 +9,23 @@ No SQL. 비관계형 데이터베이스를 의미하며 테이블간의 관계�
 
 ### SQL 
 
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/65614734/143485668-b04f0296-0a27-48fd-b08c-43b20202477d.jpeg" width="60%">
+</div>
+
+<br>
+
 - 데이터는 정해진 데이터 스키마에 따라 테이블에 저장  
-  
-    - 각 테이블은 각 데이터들을 구분할수있는 Field 와 데이터인 Record 로 이루어져있음
+
+<br>
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/65614734/143485667-c465cbbd-122c-49c8-a434-ce92bed63f66.jpeg" width="60%">
+</div>
+
+<br>
+
+- 각 테이블은 각 데이터들을 구분할수있는 Field 와 데이터인 Record 로 이루어져있음
 - 데이터는 관계를 통해 여러 테이블에 분산 - 데이터의 중복 방지
 - **스키마를 준수하지 않은 레코드는 테이블에 추가할 수 없음**
 
@@ -37,9 +51,12 @@ No SQL. 비관계형 데이터베이스를 의미하며 테이블간의 관계�
 
 <br><br>
 
-<hr>
 
 ### NoSQL 
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/65614734/143485664-72622729-0203-453b-bdbc-e0e637fa3c69.jpeg" width="60%">
+</div>
 
 - 스키마 없음
 - 테이블간 연관관계 없음
@@ -47,6 +64,10 @@ No SQL. 비관계형 데이터베이스를 의미하며 테이블간의 관계�
 - RDBMS의 레코드를 Document 라고 부름.
     
     - JSON 과 비슷한 형태를 가지고 있음 
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/65614734/143485662-b5b68b87-f4da-4b5d-a8d3-955af8545b9f.jpeg" width="60%">
+</div>
     
 - 테이블과의 관계가 없으므로 Join 의 개념이 없으며 모든 정보를 한 테이블에 저장
 - 데이터가 중복되기 때문에 모든 컬렉션에서 똑같이 데이터를 업데이트 해줘야함
