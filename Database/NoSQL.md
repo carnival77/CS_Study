@@ -10,17 +10,18 @@ No SQL. 비관계형 데이터베이스를 의미하며 테이블간의 관계�
 ### SQL 
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/65614734/143485668-b04f0296-0a27-48fd-b08c-43b20202477d.jpeg" width="60%">
+  <img src="https://user-images.githubusercontent.com/65614734/143485668-b04f0296-0a27-48fd-b08c-43b20202477d.jpeg" width="70%">
 </div>
 
-<br>
+<br><br>
+
 
 - 데이터는 정해진 데이터 스키마에 따라 테이블에 저장  
 
 <br>
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/65614734/143485667-c465cbbd-122c-49c8-a434-ce92bed63f66.jpeg" width="60%">
+  <img src="https://user-images.githubusercontent.com/65614734/143485667-c465cbbd-122c-49c8-a434-ce92bed63f66.jpeg" width="70%">
 </div>
 
 <br>
@@ -51,11 +52,13 @@ No SQL. 비관계형 데이터베이스를 의미하며 테이블간의 관계�
 
 <br><br>
 
+<hr>
+
 
 ### NoSQL 
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/65614734/143485664-72622729-0203-453b-bdbc-e0e637fa3c69.jpeg" width="60%">
+  <img src="https://user-images.githubusercontent.com/65614734/143485664-72622729-0203-453b-bdbc-e0e637fa3c69.jpeg" width="70%">
 </div>
 
 - 스키마 없음
@@ -66,7 +69,7 @@ No SQL. 비관계형 데이터베이스를 의미하며 테이블간의 관계�
     - JSON 과 비슷한 형태를 가지고 있음 
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/65614734/143485662-b5b68b87-f4da-4b5d-a8d3-955af8545b9f.jpeg" width="60%">
+  <img src="https://user-images.githubusercontent.com/65614734/143485662-b5b68b87-f4da-4b5d-a8d3-955af8545b9f.jpeg" width="70%">
 </div>
     
 - 테이블과의 관계가 없으므로 Join 의 개념이 없으며 모든 정보를 한 테이블에 저장
@@ -120,11 +123,14 @@ No SQL. 비관계형 데이터베이스를 의미하며 테이블간의 관계�
 
 <br><br>
 
-<hr>
 
 ## NoSQL CAP 이론
 
 분산형 구조는 일관성(Consistency), 가용성(Availability), 분산 허용(Partitioning Tolerance)의 3가지 특징을 가지고 있다.
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/65614734/143485728-914102bd-1187-4b52-ae50-18363cb19c82.png" width="60%">
+</div>
 
 <br>
 
@@ -162,6 +168,13 @@ No SQL. 비관계형 데이터베이스를 의미하며 테이블간의 관계�
 
 ### Key-Value Model
 
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/65614734/143485722-86ac68c8-4046-4496-930d-9f3ff9211495.png" width="50%">
+</div>
+
+<br>
+
 - 가장 기본적인 형태의 NoSQL 이며 키 하나로 데이터 하나를 저장하고 조회할 수 있는 단일 키-값 구조를 가짐
 - 단순한 저장구조로 인하여 복잡한 조회 연산을 지원하지 않으며 고속 읽기와 쓰기에 최적화된 경우가 많음
 - 하나의 서비스 요청에 다수의 데이터 조회 및 수정 연산이 발생하면 트랜잭션 처리가 불가능하여 데이터 정합성을 보장할 수 없다.
@@ -170,6 +183,13 @@ No SQL. 비관계형 데이터베이스를 의미하며 테이블간의 관계�
 <br>
 
 ### Document Model
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/65614734/143485717-87d07d14-3834-4ff8-b550-c41541b6c00d.png" width="70%">
+</div>
+
+<br>
+
 - 키-값 모델을 개념적으로 확장한 구조로 하나의 키에 하나의 구조화된 문서를 저장하고 조회
     - value에 Document라는 타입을 저장한다. Document는 구조화된 문서 데이터(XML, JSON, YAML 등)을 말한다
 - 객체를 Document 형태로 바로 저장 가능하다는 점에서 객체지향에서의 객체와 유사
@@ -179,6 +199,12 @@ No SQL. 비관계형 데이터베이스를 의미하며 테이블간의 관계�
 <br>
 
 ### Column Model
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/65614734/143485773-792204b9-b453-483d-99ea-265b7b6c475d.png" width="50%">
+</div>
+
+<br>
 
 - 하나의 키에 여러 개의 컬럼 이름과 컬럼 값의 쌍으로 이루어진 데이터를 저장하고 조회
 - 저장의 기본 단위는 컬럼으로 컬럼은 컬럼 이름과 컬럼 값, 타임스탬프로 구성 
