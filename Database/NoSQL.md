@@ -176,7 +176,7 @@
 
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/65614734/143485722-86ac68c8-4046-4496-930d-9f3ff9211495.png" width="50%">
+  <img src="https://user-images.githubusercontent.com/65614734/143485722-86ac68c8-4046-4496-930d-9f3ff9211495.png" width="70%">
 </div>
 
 <br>
@@ -207,7 +207,7 @@
 ### Column Model
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/65614734/143485773-792204b9-b453-483d-99ea-265b7b6c475d.png" width="50%">
+  <img src="https://user-images.githubusercontent.com/65614734/143485773-792204b9-b453-483d-99ea-265b7b6c475d.png" width="70%">
 </div>
 
 <br>
