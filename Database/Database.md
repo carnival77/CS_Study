@@ -17,7 +17,7 @@
 - 교착상태
 
 
-- Statement vs PreparedStatement
+- Statement vs PreparedStatement(https://silicon-taurus-f8a.notion.site/Statement-vs-PreparedStatement-6441e9328c694c2f9b2c817b002f461e)
   
 
 - [NoSQL](https://github.com/ffolabear/CS_Study/blob/main/Database/NoSQL.md)
