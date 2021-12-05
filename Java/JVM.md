@@ -106,31 +106,78 @@
 ### Runtime Data Area
 프로그램을 수행하기 위해 OS에서 할당받은 메모리 공간
 
+<br>
 
 #### PC Register
 
 - Thread 가 시작될때 생성되며 Thread가 생성될 때마다 생성되는 공간으로 Thread 마다 하나씩 존재
+  
+
 - Thread 가 어떤 부분을 어떤 명령으로 실행해야할지에 대한 기록을 하는 부분으로 현재 수행중이 JVM 명령의 주소를 갖는다.
+
+
+
+<br>
 
 #### JVM 스택 영역
 
 - Thread의 수행 정보를 `stack-frame` 을 통해서 저장
+  
+
 - Java Virtual Machine Stacks는 Thread가 시작될 때 생성되며, 각 Thread 별로 생성되기 때문에 다른 Thread는 접근할 수 없음
-- 메소드가 호출되면 스택에 쌓이고 호출이 종료될때 스택에 제거  
+  
+
+- 메소드가 호출되면 스택에 쌓이고 호출이 종료될때 스택에 제거
+  
+
 - 프로그램 실행과정중 임시로 할당되었다가 메소드를 빠져나가면 바로 소멸되는 특성의 데이터를 저장하기 위한 영역
 
+
+
+<br>
 
 #### Native Method Stack
 
 - 자바프로그램이 컴파일되어 생성된 바이트코드가 아닌 실제 실행할수 있는 기계어로 작성된 프로그램을 실행시키는 영역.  
   → 자바 언어가 아닌 다른 언어로 작성된 코드를 위한 영역
-- Native Method는 별도의 스택에서 새로운 스택 프레임에 저장하는데, 이것은 JNI를 사용하여 JVM 내부에 영향을 주지 않기 위함 이다. 
+  
+
+- Native Method는 별도의 스택에서 새로운 스택 프레임에 저장하는데, 이것은 JNI를 사용하여 JVM 내부에 영향을 주지 않기 위함이다. 
+
+<br>
 
 #### Method Area (= Class Area = Static Area)
 
+- 모든 스레드가 공유하는 메모리 영역
+  
 
-#### PC Register
+- 클래스 정보를 처음 메모리 공간에 올릴때 초기화되는 대상을 저장하기 위한 메모리 공간
+  
 
+- 클래스, 인터페이스, 메소드, 필드, Static 변수 등 바이트 코드 등을 보관
+  
+
+- **Runtime Constant Pool** 을 통해서 상수자료형을 저장하여 참조하고 중복을 막는다.
+
+
+
+<br>
 
 #### Heap 
 
+- 프로그램 상에서 런타임시 동적으로 할당하여 사용하는 영역  
+  
+
+- 객체를 저장하는 가상 메모리 공간이며 `new` 연산자로 생성된 객체와 배열을 저장
+  
+
+- New/Young Generation 에는 최초로 생성된 객체를 저장
+  
+
+- Tenured generation 에는 `Eden` 에서 넘어온 오래된 객체들이 저장
+  
+
+- Permanent Generation 에는 생성된 객체들의 정보의 주소값이 저장
+    - Class loader 에 의해 load 되는 Class, Method 등에 대한 Meta 정보가 저장
+    - Reflection을 사용하여 동적으로 클래스가 로딩되는 경우에 사용
+      → Spring 사용시 이 영역에 대한 고려가 필요
