@@ -26,6 +26,12 @@
 
 <br>
 
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/65614734/144752745-4cbe928c-e254-4d20-b3f5-794f288f8310.png" width="70%">
+</div>
+
+<br>
+
 1. 프로그램이 실행되면 JVM은 OS로부터 이 프로그램이 필요로하는 메모리를 할당받는다.  
     JVM은 이 메모리를 용도에 따라 여러 영역으로 나누어 관리한다.
    
@@ -105,12 +111,19 @@
 <br>
 
 
-### Garbage Collector  
+### Garbage Collector 
+[가비지 콜렉터](https://github.com/ffolabear/CS_Study/blob/main/Java/GarbageCollector.md)
 
 <br>
 
 ### Runtime Data Area
 프로그램을 수행하기 위해 OS에서 할당받은 메모리 공간
+
+<br>
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/65614734/144752740-464bbfdf-93f1-4bec-8706-ca9c244b7436.png" width="60%">
+</div>
 
 <br>
 
@@ -170,6 +183,10 @@
 <br>
 
 #### Heap 
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/65614734/144752744-d2f3bb1f-6c74-4f09-893b-6727314580d7.png" width="70%">
+</div>
 
 - 프로그램 상에서 런타임시 동적으로 할당하여 사용하는 영역  
   
