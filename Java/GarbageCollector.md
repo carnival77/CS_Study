@@ -62,14 +62,88 @@
 
 <br>
 
-### 동작방식
+### Garbage Collection 알고리즘
+여러가지 방식이 있는데 기본적인 원리는 같다.
 
-    1.  
+1. Heap 내에 있는 객체중 가비지를 찾아내서 메모리를 회수
+   
+
+2. 가비지의 판단은 **reachability** / **unreachability** 로 판단
+- Heap 영역내에 있는 객체가 유효한 참조가 있으면 **reachability**
+- 그렇지 않으면 **unreachability**
+
+객체가 객체를 참조하고 그 객체가 또 다른 객체를 참조하는 참조 사슬이 형성될때 사슬의 최초 객체를 Root Set 이라고 한다.
+
+Heap 영역의 객체들은 총 4가지 경우에 대해 참조를 하게되는데 이중 2, 3, 4 는 Root Set 이다.
+
+1. 힙 내의 다른 객체에 의한 참조
+2. Java 스택, 즉 Java 메서드 실행 시에 사용하는 지역변수와 파라미터들에 의한 참조
+3. 네이티브 스택(Java Native Interface) 에 의해 생성된 객체에 의한 참조
+4. 메서드 영역의 정적변수에 의한 참조
+
+<br>
+
+### Serial GC
+
+- Serial GC 의 Young 영역에서는 **Mark & Sweep** 이 일어나지만 Old 영역에서는 **Compact** 과정이 추가된다.  
+  
+
+- Heap 영역을 정리하기 위한 단계로 유요한 객체들이 연속되게 쌓이도록 힙의 가장 앞 부분부터 채워서 객체가 존재하는 부분과 객체가 존재하지 않는 부분으로 나누는 것
+  
+
+- 하지만 서버의 CPU 코어가 1개일때 사용하기 위해 개발되었으므로 CPU 코어가 여러개일 경우는 피해야한다.  
+
+<br>
+
+### Parallel GC
+
+- 처리 과정은 Serial GC와 동일하지만 Parallel GC는 여러 개의 쓰레드를 통해 Parallel하게 GC를 수행함으로써 GC의 오버헤드를 상당히 줄여준다
+  
+
+- 멀티 프로세서 또는 멀티 쓰레드 머신에서 중간 규모부터 대규모의 데이터를 처리하는 애플리케이션을 위해 고안되었으며, 옵션을 통해 애플리케이션의 최대 지연 시간 또는 GC를 수행할 쓰레드의 갯수 등을 설정해줄 수 있다.
+  
+
+- Java8 까지 Default Garbage Collector 로 사용되었으나 추후 대체되었다.
+
+<br>
+
+### CMS(Concurrent Mark Sweep) GC
+
+- Parallel GC와 마찬가지로 여러 개의 쓰레드를 이용한다. 하지만 기존의 Serial GC나 Parallel GC와는 다르게 Mark Sweep 알고리즘을 Concurrent하게 수행하게 된다.
+
+  #### Concurrency(병행성, 동시성) vs Parallelism(병렬성)
+  > Concurrency : 동시에 실행되는 것 같이 보이는 것                                                                      
+  > Parallelism : 실제로 동시에 여러 작업이 처리되는 것
+
+- 애플리케이션의 지연 시간을 최소화 하기 위해 고안
+  
+
+- 다른 GC 방식보다 메모리와 CPU를 더 많이 필요
+  
+
+- Java9 버젼부터 deprecated 되었고 결국 Java14에서는 사용이 중지
+
+<br>
+
+### G1(Garbage First) GC
+
+- CMS GC를 대체하기 위해 개발되었고, Java7부터 지원되기 시작
+  
+
+- Region(지역)이라는 개념을 새로 도입하여 Heap을 균등하게 여러 개의 지역으로 나누고, 각 지역을 역할과 함께 논리적으로 구분하여(Eden 지역인지, Survivor 지역인지, Old 지역인지) 객체를 할당
 
 
+- Humonguous는 Region 크기의 50%를 초과하는 객체를 저장하는 Region을 의미
+  
+
+- Availabe/Unused는 사용되지 않은 Region을 의미
+  
+
+- 어떠한 GC 방식보다 처리 속도가 빠르며 큰 메모리 공간에서 멀티 프로레스 기반으로 운영되는 애플리케이션을 위해 고안
+  
+
+- Java9부터 Default Garbage Collector로 사용
 
 
-
-
-
+<br><br>
 
