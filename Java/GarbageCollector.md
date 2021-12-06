@@ -98,7 +98,7 @@
 
 객체가 객체를 참조하고 그 객체가 또 다른 객체를 참조하는 참조 사슬이 형성될때 사슬의 최초 객체를 Root Set 이라고 한다.
 
-Heap 영역의 객체들은 총 4가지 경우에 대해 참조를 하게되는데 이중 2, 3, 4 는 Root Set 이다.
+Heap 영역의 객체들은 총 4가지 경우에 대해 참조를 하게되는데 이중 2, 3, 4 는 Root Set 이고 Reachability 를 판단하는 기준이 된다.
 
 1. 힙 내의 다른 객체에 의한 참조
 2. Java 스택, 즉 Java 메서드 실행 시에 사용하는 지역변수와 파라미터들에 의한 참조
@@ -121,7 +121,7 @@ Heap 영역의 객체들은 총 4가지 경우에 대해 참조를 하게되는�
 
 ### Parallel GC
 
-- 처리 과정은 Serial GC와 동일하지만 Parallel GC는 여러 개의 쓰레드를 통해 Parallel하게 GC를 수행함으로써 GC의 오버헤드를 상당히 줄여준다
+- 처리 과정은 Serial GC와 동일하지만 Parallel GC는 여러 개의 쓰레드를 통해 Parallel하게 GC를 수행함으로써 GC의 오버헤드를 상당히 줄여준다
   
 
 - 멀티 프로세서 또는 멀티 쓰레드 머신에서 중간 규모부터 대규모의 데이터를 처리하는 애플리케이션을 위해 고안되었으며, 옵션을 통해 애플리케이션의 최대 지연 시간 또는 GC를 수행할 쓰레드의 갯수 등을 설정해줄 수 있다.
@@ -133,7 +133,7 @@ Heap 영역의 객체들은 총 4가지 경우에 대해 참조를 하게되는�
 
 ### CMS(Concurrent Mark Sweep) GC
 
-- Parallel GC와 마찬가지로 여러 개의 쓰레드를 이용한다. 하지만 기존의 Serial GC나 Parallel GC와는 다르게 Mark Sweep 알고리즘을 Concurrent하게 수행하게 된다.
+- Parallel GC와 마찬가지로 여러 개의 쓰레드를 이용한다. 하지만 기존의 Serial GC나 Parallel GC와는 다르게 Mark Sweep 알고리즘을 Concurrent하게 수행하게 된다.
 
   #### Concurrency(병행성, 동시성) vs Parallelism(병렬성)
   
@@ -202,7 +202,16 @@ Heap 영역의 객체들은 총 4가지 경우에 대해 참조를 하게되는�
 
 <br><br>
 
+이미지출처
+- https://asfirstalways.tistory.com/159?category=660807
+- https://mangkyu.tistory.com/119
 
+참고 자료
+- https://asfirstalways.tistory.com/158
+- https://d2.naver.com/helloworld/1329
+- https://d2.naver.com/helloworld/329631
+- https://mangkyu.tistory.com/118
+- https://mangkyu.tistory.com/119
 
 <br><br>
 
