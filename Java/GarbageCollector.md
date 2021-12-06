@@ -182,7 +182,7 @@ Heap 영역의 객체들은 총 4가지 경우에 대해 참조를 하게되는�
 <br>
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/65614734/144907759-2754ecc5-b18d-40ee-8c39-455ad829b1da.png" width="70%">
+  <img src="https://user-images.githubusercontent.com/65614734/144907759-2754ecc5-b18d-40ee-8c39-455ad829b1da.png" width="35%">
 </div>
 
 
@@ -201,4 +201,10 @@ Heap 영역의 객체들은 총 4가지 경우에 대해 참조를 하게되는�
 
 
 <br><br>
+
+
+
+<br><br>
+
+
 
