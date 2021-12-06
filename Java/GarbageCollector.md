@@ -206,6 +206,8 @@ Heap 영역의 객체들은 총 4가지 경우에 대해 참조를 하게되는�
 - https://asfirstalways.tistory.com/159?category=660807
 - https://mangkyu.tistory.com/119
 
+<br>
+
 참고 자료
 - https://asfirstalways.tistory.com/158
 - https://d2.naver.com/helloworld/1329
