@@ -1,4 +1,4 @@
-## JVM - Java Virtual Machine
+# JVM - Java Virtual Machine
 
 자바 코드를 ( **고수준** )  컴퓨터가 이해하고 실행할 수 있는 바이트코드로( **저수준** ) 변환( **컴파일** )하는 프로그램
 
@@ -208,3 +208,13 @@
 
 <br><br>
 
+이미지출처
+- https://asfirstalways.tistory.com/158
+
+참고 자료
+- https://asfirstalways.tistory.com/158
+- https://velog.io/@jsj3282/JVM%EA%B3%BC-%EC%9E%90%EB%B0%94-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B5%AC%EC%A1%B0Runtime-Data-Area
+- https://d2.naver.com/helloworld/1230
+
+
+<br><br>
