@@ -10,6 +10,14 @@
 
 그렇기 때문에 오랫동안 남아있는 객체와 금방 사라지는 객체를 구분하기 위해 `Young`, `Old` 두가지 영역으로 나누어 설계되었다.
 
+<br>
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/65614734/144907772-00544efb-9578-465b-a122-8d69a58e051e.png" width="70%">
+</div>
+
+<br>
+
 
 ### Young Generation
 
@@ -47,6 +55,13 @@
 
 <br>
 
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/65614734/144907769-9dae2e7f-46a7-4e6c-884a-e8a468a4dd8a.png" width="70%">
+</div>
+
+
+<br>
+
 ### Old Generation
 
 - `Young` 영역에서 Reachable 상태를 유지하여 살아남은 객체가 복사되는 영역
@@ -71,6 +86,15 @@
 2. 가비지의 판단은 **reachability** / **unreachability** 로 판단
 - Heap 영역내에 있는 객체가 유효한 참조가 있으면 **reachability**
 - 그렇지 않으면 **unreachability**
+
+<br>
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/65614734/144907765-a3f9b27c-398e-4e5b-98f2-5fb6d7e49186.png" width="70%">
+</div>
+
+
+<br>
 
 객체가 객체를 참조하고 그 객체가 또 다른 객체를 참조하는 참조 사슬이 형성될때 사슬의 최초 객체를 Root Set 이라고 한다.
 
@@ -112,8 +136,20 @@ Heap 영역의 객체들은 총 4가지 경우에 대해 참조를 하게되는�
 - Parallel GC와 마찬가지로 여러 개의 쓰레드를 이용한다. 하지만 기존의 Serial GC나 Parallel GC와는 다르게 Mark Sweep 알고리즘을 Concurrent하게 수행하게 된다.
 
   #### Concurrency(병행성, 동시성) vs Parallelism(병렬성)
+  
+  <br>
+
+  <div align="center">
+    <img src="https://user-images.githubusercontent.com/65614734/144907776-f3e6d3eb-a841-493d-921f-888989572bde.png" width="50%">
+  </div>
+
+
+  <br>
+  
   > Concurrency : 동시에 실행되는 것 같이 보이는 것                                                                      
   > Parallelism : 실제로 동시에 여러 작업이 처리되는 것
+
+  <br>
 
 - 애플리케이션의 지연 시간을 최소화 하기 위해 고안
   
@@ -125,6 +161,17 @@ Heap 영역의 객체들은 총 4가지 경우에 대해 참조를 하게되는�
 
 <br>
 
+#### Serial GC vs Parallel GC vs CMS GC
+
+<br>
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/65614734/144907763-eb7441f3-d5fa-435b-ba3e-51816fb8c851.png" width="70%">
+</div>
+
+
+<br>
+
 ### G1(Garbage First) GC
 
 - CMS GC를 대체하기 위해 개발되었고, Java7부터 지원되기 시작
@@ -132,6 +179,14 @@ Heap 영역의 객체들은 총 4가지 경우에 대해 참조를 하게되는�
 
 - Region(지역)이라는 개념을 새로 도입하여 Heap을 균등하게 여러 개의 지역으로 나누고, 각 지역을 역할과 함께 논리적으로 구분하여(Eden 지역인지, Survivor 지역인지, Old 지역인지) 객체를 할당
 
+<br>
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/65614734/144907759-2754ecc5-b18d-40ee-8c39-455ad829b1da.png" width="70%">
+</div>
+
+
+<br>
 
 - Humonguous는 Region 크기의 50%를 초과하는 객체를 저장하는 Region을 의미
   
