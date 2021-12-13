@@ -134,7 +134,7 @@
 
 
 참고 자료
-- https://blog.advenoh.pe.kr/java/자바에서-fina에-대한-이해/
+- https://blog.advenoh.pe.kr/java/자바에서-final에-대한-이해/
 
 
 <br><br>
