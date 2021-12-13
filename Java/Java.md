@@ -14,7 +14,7 @@
 - [Generic](https://github.com/ffolabear/CS_Study/blob/main/Java/Generic.md)
 
 
-- Final
+- [Final](https://github.com/ffolabear/CS_Study/blob/main/Java/Final.md)
 
 
 - Overriding vs Overloading
