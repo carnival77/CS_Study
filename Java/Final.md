@@ -85,32 +85,34 @@
             #### 정적 초기화 블록 vs 인스턴스 초기화 블록
 
             #### 코드
-                ```
-                public class Zoo {
+            ```
+             public class Zoo {
 
                 final int animal;
                 
-                    {
-                        System.out.println("인스턴스 초기화 블록");
-                        animal = 100;
-                        System.out.println("animal : " + animal);
-                    }
+                {
+                    System.out.println("인스턴스 초기화 블록");
+                    animal = 100;
+                    System.out.println("animal : " + animal);
+                }
                 
-                    static {
-                        System.out.println("정적 초기화 블록");
-                    }
+                static {
+                    System.out.println("정적 초기화 블록");
+                }
                 
-                    public Zoo() {
-                        System.out.println("생성자 호출");
-                    }
+                public Zoo() {
+                    System.out.println("생성자 호출");
+                }
                 
-                    public static void main(String[] args) {
-                        Zoo zoo = new Zoo();
-                        Zoo zoo1 = new Zoo();
-                        }   
-                    }
-                ```
-
+                public static void main(String[] args) {
+                    Zoo zoo = new Zoo();
+                    Zoo zoo1 = new Zoo();
+                }   
+             }
+            ```
+            
+            <br>
+                
             #### 결과
             
             ```
@@ -124,14 +126,19 @@
             생성자 호출
           
             ```
-
-            인스턴스 초기화 블록은 **객체를 생성할 때마다**, **부모 생성자 이후에 실행**, **생성자보다 먼저 실행됨** 일때 실행되며,
           
-            <br>
-
+            인스턴스 초기화 블록은 **객체를 생성할 때마다**, **부모 생성자 이후에 실행**, **생성자보다 먼저 실행됨** 일때 실행되며,  
+            
             정적 초기화 블록은 **클래스 로드시 한번만** 블록이 실행된다.
 
+<br>
 
+- 혼동할 수 있는 키워드
+    - `finally` : `try-catch`에서 예외처리의 발생 유무와 관계없이 무조건 실행해야하는 부분을 작성할떄 사용
+    - `finalize` : 객체가 소멸될때 호출되는 **메소드**. 거의 사용하지 않음.
+    
+
+<br>
 
 참고 자료
 - https://blog.advenoh.pe.kr/java/자바에서-final에-대한-이해/
