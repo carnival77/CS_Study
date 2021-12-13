@@ -29,7 +29,7 @@ CS 스터디를 하면서 필요한 CS 지식을 공유하고 작성한 자료�
       - [데이터베이스](https://github.com/ffolabear/CS_Study/tree/main/Database/Database.md) (현재 진행중)
       - 디자인패턴
       - 알고리즘
-      - Java
+      - [Java](https://github.com/ffolabear/CS_Study/blob/main/Java/Java.md)
 
 <br>
 
