@@ -2,7 +2,7 @@
 
 - Chapter 6. 객체지향 프로그래밍 1
 - Chapter 7. 객체지향 프로그래밍 2
-- Chapter 8. 예외처리 (Exception Handling)
+- [Chapter 8. 예외처리 (Exception Handling)](https://github.com/ffolabear/CS_Study/blob/main/JavaBook/Chapter8th.md)
 - Chapter 9. java.lang 패키지와 유용한 클래스
 - Chapter 10. 날짜와 시간 & 형식화
 - Chapter 11. 컬렉션 프레임워크
