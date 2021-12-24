@@ -24,6 +24,10 @@
 
 #### 예외 클래스 계층도
 
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/65614734/147367596-87390261-cea1-4691-a1bd-6997802f168e.png">
+</div>
+
 
 <br><br>
 
