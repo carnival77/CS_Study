@@ -132,10 +132,10 @@
         }
 ```
 
-`RuntimeException` 클래스와 그 자손 클래스들은 프로그래머의 실수로 발생되므로 **예외처리를 강제하지 않지만**, 
-    ->   
+`RuntimeException` 클래스와 그 자손 클래스들은 프로그래머의 실수로 발생되므로 **예외처리를 강제하지 않지만**,   
+    👉 Unchecnked 예외   
 `RuntimeException` 클래스를 제외한 나머지 클래스들 - `Exception 클래스들` - 은 예외처리를 해주지 않으면 컴파일 조차 안된다.
-
+    👉 Checnked 예외
 
 <br><br>
 
