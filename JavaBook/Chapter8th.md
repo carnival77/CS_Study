@@ -31,7 +31,7 @@
 </div>
 
 책에서 명시한대로   
-`RuntimeException` 클래스와 그 자손 클래스들을 `RuntimeException 클래스들` 로,
+`RuntimeException` 클래스와 그 자손 클래스들을 `RuntimeException 클래스들` 로,   
 `RuntimeException` 클래스를 제외한 나머지 클래스들을 `Exception 클래스들` 로 명시하겠다.
 
 <br>
