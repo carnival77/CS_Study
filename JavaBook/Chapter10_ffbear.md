@@ -136,15 +136,17 @@ Date date = new Date(calendar.getTimeInMillis());
 - `String convertDayToDate(int day)` : 일단위의 값을 년월일의 문자열로 변환
 - `int convertDateToDay(int year, int month, int day)` : 년월일을 일단위로 변환
 
-
+<br><br>
 
 ## 2. 형식화 클래스
 
 
-<br>
+<br><br>
 
 ## 3. Java.time 패키지
 
+
+<br><br>
 
  
 <br>
