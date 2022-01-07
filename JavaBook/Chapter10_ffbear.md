@@ -300,7 +300,9 @@ Date date = new Date(calendar.getTimeInMillis());
         
 ```
 
+<br>
 
+### 2.3 Choice Format
 
 <br><br>
 
