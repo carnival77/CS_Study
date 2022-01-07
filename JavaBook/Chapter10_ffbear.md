@@ -140,6 +140,167 @@ Date date = new Date(calendar.getTimeInMillis());
 
 ## 2. 형식화 클래스
 
+숫자나 날짜 등등을 원하는 형식으로 변환하는 것을 도와주는 클래스이다.
+
+### 2.1 DecimalFormat
+형식화 클래스중 숫자를 형식화할떄 사용하거나 일정한 형식의 텍스트를 숫자로 변환할때 사용한다.
+
+#### 사용되는 기호
+
+- `0` : 10진수 숫자(값이 없으면 0)
+- `#` : 10진수 숫자
+- `.` : 소수점
+- `-` : 음수 부호
+- `.` : 단위 구분자
+- `E` : 지수기호
+- `;` : 패턴 구분자
+- `%` : 퍼센트
+- `‰` : 퍼밀(퍼센트 x 10)
+- `₩` : 통화기호
+- `'` : escape 문자
+
+```
+                double num = 12345678.89;
+     
+                "0",                     // 1234568
+                "0.0",                   // 1234567.9
+                "0000000000.0000",       // 0001234567.8900
+
+                "#",                     // 1234568
+                "#.#",                   // 1234567.9
+                "##########.####",       // 1234567.89
+
+                "#.#",                   // 1234567.9
+
+                "-#.#",                  // -1234567.9
+                "#.#-",                  // 1234567.9-
+
+                "#,###.##",              // 1,234,567.89
+                "#,####.##",             // 123,4567.89
+
+                "#E0",                   // 1.23456789E6
+                "0E0",                   // 1E6
+                "##E0",                  // 1.23456789E6
+                "00E0",                  // 12E5
+                "####E0",                // 123.456789E4
+                "0000E0",                // 1235E3
+                "#.#E0",                 // 1.2E6
+                "0.0E0",                 // 1.2E6
+                "0.000000000E0",         // 1.234567890E6
+                "00.00000000E0",         // 12.34567890E5
+                "000.0000000E0",         // 123.4567890E4
+                "#.#########E0",         // 1.23456789E6
+                "##.########E0",         // 1.23456789E6
+                "###.#######E0",         // 1.2345679E6
+
+                "#,###.##+;#,###.##-",   // 1,234,567.89+
+
+                "#.#%",                  // 123456789%
+
+                "#.#\u2030",             // 1234567890‰
+
+                "\u00A4 #,###",          // ₩ 1,234,568
+
+                "'#'#,###",              // #1,234,568
+                "''#,###"                // '1,234,568
+
+
+```
+
+<br>
+
+혹은 `NumberFormat` 에 정의된 `parse(String)` 메소드를 사용해서 문자열에서 숫자로 변환할 수 있다.
+
+```
+        DecimalFormat df = new DecimalFormat("0.0");
+        Number n = df.parse("123.456");
+        
+        //123.456
+```
+
+<br>
+
+### 2.2 SimpleDateFormat
+날짜를 출력할때 사용하는 메소드이며 좀더 편리하게 출력하게 도와준다. 마찬가지로 추상클래스이기 때문에 `SimpleDateFormat` 
+인스턴스를 생성하고 원하는 형식을 넣으면 그에 맞는 형태로 출력된다.
+
+- `G` : 연대 (BC, AD)
+- `y` : 년도 
+- `M` : 월 (1~12)  
+- `w` : 해당 년도의 몇 번째 주 (1~53)
+- `W` : 해당 월의 몇 번째 주 (1~5) 
+- `D` : 해당 연도의 몇 번째 일 (1~366) 
+- `d` : 해당 월의 몇 번째 일 (1~31) 
+- `F` : 해당 월의 몇 번째 요일 (1~5)
+- `E` : 요일 (월~일) Sat a 오전/오후 (AM, PM)
+- `H` : 시간 (0~23) 21 h 시간 (1~12) 
+- `K` : 시간 (0~11)
+- `k` : 시간 (1~24)
+- `m` : 분 (0~59)
+- `s` : 초 (0~59)
+- `S` : 1/1000초 (0~999)
+- `z` : 타임존(RFC 822) (ex : KST+0900 )
+- `Z` : 타임존 (ex : +0900 ) 
+
+<br>
+
+```
+
+        Date today = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yy년 MM월 dd일 E요일");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss SSS");
+        SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss a");
+
+
+        System.out.println(sdf.format(today));
+        System.out.println(sdf1.format(today));
+        System.out.println(sdf2.format(today));
+        System.out.println(sdf3.format(today));
+        
+        //출력
+        // 2022-01-08
+        // 22년 01월 08일 Sat요일
+        // 2022-01-08 01:16:37 278
+        // 2022-01-08 01:16:37 AM
+                
+```
+
+<br>
+
+`Calendar` 와 `Date`클래스와도 조합할 수 있는데 `Date` 인스턴스만 `format` 메서드에 사용될수 있기 때문에 변환을 해줘야한다.
+
+```
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(2021, 1, 1);
+
+        //변환
+        Date day = cal.getTime();
+        SimpleDateFormat sdf4 = new SimpleDateFormat("yy년 MM월 dd일 E요일");
+        System.out.println(sdf4.format(day));
+        
+        //출력
+        // 21년 02월 01일 Mon요일
+
+```
+
+<br>
+
+문자열을 Date 인스턴스로 변환할 수 도 있다.
+
+```
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date day = sdf.parse("2021-01-01");
+        System.out.println(sdf.format(day));
+        
+        //출력
+        // 2021-01-01
+        
+```
+
+
 
 <br><br>
 
