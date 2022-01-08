@@ -236,8 +236,93 @@ public class ThreadEx1{
 
 ## 7. 데몬 쓰레드
 
+일반 쓰레드와 다르게 다른 일반 스레드의 작업을 돕는 보조적인 역할을 수행하는 쓰레드이다. 일반 쓰레드의 보조역할을 하기 때문에
+일반 쓰레드가 모두 종료되면 자동으로 데몬 쓰레드도 종료된다.  이점을 제외하고는 일반 스레드와 다르지 않다. 
+
+<br>
+
+> 데몬 쓰레드의 예시 : 가비지 컬렉터, 워드프로세서의 저장, 화면자동갱신
+
+<br>
+
+데몬 쓰레드는 무한루프와 조건문을 통해 특정 조건 만족시에 작업을 수행하게 작성하며 실행하기전에 `setDaemon(true)` 를 
+호출하기만 하면된다. 나머지 작성방법과 실행방법은 일반 쓰레드와 같다. 데몬 쓰레드가 생성하 쓰레드는 자동적으로 데몬 쓰레드가 된다.
+
+```
+
+public class ThreadEx3 implements Runnable {
+
+    static boolean autoSave = false;
+
+    public static void main(String[] args) {
+
+        Thread t = new Thread(new ThreadEx3());
+        t.setDaemon(true);
+        //호출
+        t.start();
+
+        for (int i = 1; i <= 10; i++) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+            }
+            System.out.println(i);
+
+            if (i == 5)
+                autoSave = true;
+        }
+
+        System.out.println("프로그램을 종료합니다.");
+    }
+
+    public void run() {
+        while (true) {
+            try {
+                Thread.sleep(3 * 1000);
+            } catch (InterruptedException e) {
+            }
+
+            if (autoSave) {
+                autoSave();
+            }
+        }
+    }
+
+    public void autoSave() {
+        System.out.println("작업파일이 자동저장되었습니다.");
+    }
+    
+
+}
+
+
+```
+
+<br>
+
+눈여겨 봐야할곳은 데몬 쓰레드를 실행하기 전에 쓰레드를 생성한 부분과 데몬 쓰레드를 호출한 부분이다. 작업이 없을때는 대기하다가
+작업이 생기면 작업하고 작업이 끝나면 다시 대기하는 데몬 쓰레드의 특징 덕분에 데몬 쓰레드가 무한히 작동하지 않는다.
+
+<br>
+
+```
+
+        Thread t = new Thread(new ThreadEx3());
+        t.setDaemon(true);
+        t.start();
+        
+```
+
+<br>
+
+현재 실행, 대기상태, 즉 작업이 완료되지않은 모든 쓰레드의 호출스택을 출력하려면 `getAllStackTraces()` 메소드를 사용하면 된다.
+
+
 <br>
 
 ## 8. 쓰레드의 실행제어
 
+
+
+<br><br>
 
