@@ -33,8 +33,80 @@ Process 는 실행중인 프로그램을 말하는데 OS 프로세스는 프로�
 <br>
 
 ## 2. 쓰레드의 구현과 실행
+`Thread` 클래스를 상속받거나 `Runnable` 인터페이스를 구현하는 방법 2가지가 있는데 `Runnable` 인터페이스를 구현하는 방법이 더 재사용성이
+좋은 객체지향적 방법이다. 인터페이스의 구현을 위해서는 추상메서드인 `run()` 메소드만 구현해주면 된다.
+
+```
+
+public class ThreadEx1{
+    
+    //자손클래스에서 Thread 클래스의 매서드를 직접 호출할 수 있음
+    static class ThreadEx_1 extends Thread {
+
+        public void run() {
+            for (int i = 0; i < 5; i++) {
+                System.out.println("Thread : " + getName());
+
+            }
+
+        }
+    }
+        
+    //Thread 클래스의 `static` 메서드인 currentThread() 을 호출하여 쓰레드에 대한 참조를 얻어와야만 호출이 가능
+    static class ThreadEx_2 implements Runnable {
+
+        @Override
+        public void run() {
+            for (int i = 0; i < 5; i++) {
+                System.out.println("Runnable : " + Thread.currentThread());
+
+            }
+        }
+
+    }
+
+    public static void main(String[] args) {
+
+        ThreadEx_1 t1 = new ThreadEx_1();
+
+        Runnable r = new ThreadEx_2();
+        Thread t2 = new Thread(r);
+
+        t1.start();
+        t2.start();
+
+    }
+
+}
+
+```
+<br>
+
+출력
+
+    Thread : Thread-0  
+    Thread : Thread-0   
+    Thread : Thread-0  
+    Thread : Thread-0  
+    Thread : Thread-0  
+    Runnable : Thread[Thread-1,5,main]  
+    Runnable : Thread[Thread-1,5,main]  
+    Runnable : Thread[Thread-1,5,main]  
+    Runnable : Thread[Thread-1,5,main]  
+    Runnable : Thread[Thread-1,5,main]  
+
 
 <br>
+
+- `Thread` 를 상속받은 경우 `Thread` 를 상속받은 자손 클래스의 인터페이스를 생성해야하는 반면,  
+`Runnable` 인터페이스를 구현한 경우 `Runnable` 인터페이스를 구현한 클래스의 인스턴스를 생성하고 `Thread` 클래스의 생성자의 매개변수로 
+  제공해야한다.
+
+
+- `Thread` 클래스를 상속받으면 클래스의 매서드를 직접 호출할 수 있지만 `Runnable` 을 구현하면 
+  `Thread` 클래스의 `static` 메서드인 currentThread() 을 호출하여 쓰레드에 대한 참조를 얻어와야만 호출이 가능하다. 
+  
+
 
 ## 3. start() 와 run()
 
