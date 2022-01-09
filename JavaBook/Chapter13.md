@@ -180,7 +180,7 @@ public class ThreadEx1{
 쓰레드 그룹은 서로 관련된 쓰레드를 그룹으로 다루기 위한 것이다. 여러 관련있는 쓰레드들은 폴더로 묶어서 관리할 수 있다.
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 생성자 / 메서드
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **생성자** / **메서드**
 - `ThreadGroup(String name)` :	지정된 이름의 새로운 쓰레드 그룹을 생성
 - `ThreadGroup(ThreadGroup parent, String name)` : 지정된 쓰레드 그룹에 포함되는 새로운 쓰레드 그룹 생성
 - `int activeCount()` : 쓰레드 그룹에 포함된 활성상태에 있는 쓰레드의 수를 반환
@@ -321,6 +321,147 @@ public class ThreadEx3 implements Runnable {
 <br>
 
 ## 8. 쓰레드의 실행제어
+쓰레드 프로그래밍은 동기화(synchronization) 과 스케줄링(scheduling) 때문에 하는 것이 쉽지않다. 효율적인 멀테쓰레드 
+프로그램을 만들기 위해서는 스케줄링을 통해 주어진 자원과 시간을 낭비없이 사용할 수 있도록 프로그래밍 해야한다.
+
+
+#### 스케줄링 메서드
+
+- `static void sleep(long millis)`
+  `static void sleep(long millis, int nanos)`   
+  : 지정된 시간동안 쓰레드를 일시정지시키고 지정한 시간이 지나고 나면 자동적으로 다시 실행대기상태가 된다.
+  
+
+- `void join()` `void join(long millis)` `void join(long millis, int nanos)`  
+  : 지정된 시간동안 쓰레드가 실행되도록 한다. 지정된 시간이 지나거나 작업이 종료되면 join()을 호출한 
+    쓰레드로 다시 돌아와 실행을 계속한다.
+ 
+ 
+- `void interrupt()` : sleep()이나 join()에 의해 일시정지상태인 쓰레드를 실행대기상태로 만든다. 해당 쓰레드에서는 
+  `InterruptedException` 이 발생함으로써 일시정지상태를 벗어나게 한다.
+  
+
+- `void stop()` : 쓰레드를 즉시 종료시킨다. 교착상태에 빠지기 쉽기때문에 잘 사용하지 않는다.
+
+
+- `void suspend()` : 쓰레드를 일시정지시킨다. `resume()` 을 호출하면 다시 실행대기 상태가 됩니다.
+
+
+- `static void yield()` : 실행 중에 다른 쓰레드에게 양보하고 실행대기상태가 된다.
+
+<br>
+
+그리고 쓰레드에는 위에서 말한 5가지 상태가 있다.
+
+- `NEW` : 쓰레드가 생성되고 아직 `start()` 가 호출되지 않은 상태
+  
+
+- `RUNNABLE` : 실행 중 또는 실행 가능한 상태
+  
+
+- `BLOCKED` : 동기화 블럭에 의해서 일시정지된 상태(lock 이 풀릴 떄까지 기다리는 상태)
+  
+
+- `WAITING`, `TIME_WAITING` : 쓰레드의 작업이 종료되지는 않았지만 실행가능하지 않은(unreachable) 일시정지 상태.
+  `TIME_WAITING` 은 일시정지 시간이 지정된 경우를 의미한다.
+  
+
+- `TERMINATED` : 쓰레드의 작업이 종료된 상태
+
+<br>
+
+
+쓰레드의 생성부터 소멸까지의 과정을 샆려보면 다음과 같다.
+
+
+<br>
+
+1. 쓰레드를 생성하고 `start()` 를 호출하면 바로 실행되는 것이 아니라 실행대기열에 저장되어 자신의 차례가 될 때까지 기다려야 
+   한다. 실행대기열은 큐(queue)와 같은 구조로 먼저 실행대기열에 들어온 쓰레드가 먼저 실행된다.
+
+
+2. 실행대기상태에 있다가 자신의 차례가 되면 실행상태가 된다.
+
+
+3. 주어진 실행시간이 다되거나 `yeild()` 를 만나면 다시 실행대기상태가 되고 다음 차례의 쓰레드가 실행상태가 된다.
+
+
+4. 실행 중에 `suspend()`, `sleep()`, `wait()`, `join()`, `I/O block` 에 의해 일시정지상태가 될 수 있다. 
+   `I/O block` 은 입출력작업에서 발생하는 지연상태를 말한다. 사용자의 입력을 기다리는 경우를 예로 들 수 있는데, 
+   이런 경우 일시정지 상태에 있다가 사용자가 입력을 마치면 다시 실행대기상태가 된다.
+
+
+5. 지정된 일시정지시간이 다되거나(time-out), `notify()`, `resume()`, `interrupt()`가 호출되면 일시정지 상태를 
+   벗어나 다시 실행대기열에 저장되어 자신의 차례를 기다리게 된다.
+
+   
+6. 실행을 모두 마치거나 `stop()` 이 호출되면 쓰레드는 소멸된다.
+
+1부터 6까지 번호를 붙였으나 번호의 순서대로 쓰레드가 수행되는 것은 아니다.
+
+<br>
+
+### 스케줄링 메서드 
+
+
+#### `sleep(long millis)`, `static void sleep(long millis, int nanos)`
+지정된 시간동안 쓰레드를 멈추게 한다. **millisecond 는 1000분의 1초 이고 nanosecond 는 10분의 1초 이다.**  
+`sleep`에 의해 일시정지된 스레드는 지정시간이 다 되거나 `interrupt` 가 호출되면 다시 실행대기 생태가 되므로 `try-catch`
+문으로 예외를 처리해줘야 한다.
+
+```
+
+    try {
+            t1.sleep(2000);
+    } catch (InterruptedException e) {
+            e.printStackTrace();
+    }
+
+```
+
+<br>
+
+`sleep` 는 항상 현재 실행중이 쓰레드에 대해 동작하기 때문에 참조변수를 이용해서 호출하기 보다는 `Thread.sleep(2000)` 
+같은 식으로 호출해야한다. (`static` 메서드이기 때문에 가능)
+
+
+<br>
+
+
+#### `interrupt()`, `interrupted()`
+진행 중인 쓰레드의 작업이 끝나기 전에 취소시켜야할때 사용한다. 강제 종료하는 것이 아닌 작업을 멈추는 기능을 한다.  
+`interrupt()`는 쓰레드 내부의 `interrupted` 변수을 바꾸지만, `interrupted()` 는 쓰레드에 의해 `interrupt()`
+의 호출여부를 `boolean` 타입으로 반환한다.
+
+`while` 문과 조합해서 사용할 수 있다.
+
+```
+    while(!interrupted()){
+            ...
+    }
+```
+
+<br>
+
+- `interrupt()` 는 쓰레드의 `interrupt` 상태를 `false` → `true` 상태로 변경
+  
+
+- `isInterrupt()` : 쓰레드의 `interrupt` 상태를 반환
+  
+
+- `interrupted()` : 쓰레드의 `interrupt` 상태를 반환 후 **false 로 변경**
+
+쓰레드를 `WAITING` 상태로 만드는 `sleep()`, `wait`, `join` 에 의해 일시정지 상태가 되었을댸 `interrupt()` 를
+호출하면 `InterruptException` 이 발생하고 실행대기상태인 `RUNNABLE` 상태가 된다.
+
+<br>
+
+#### `suspend()`, `resume()`, `stop()`
+
+`suspend` 는 `sleep` 처럼 쓰레드를 멈추게 하고 `suspend` 에 의해 정지된 쓰레드는 `resume` 을 호출해야 다시 실행대기
+상태가 된다. `suspend` 와 `stop` 는 쓰레드를 제어하기 가장 쉬운 방법이지만 교착 생태(`deadlock`) 를 일으키기 쉬워서
+`stop` 은 `deprecated` 되었다.
+
 
 
 
