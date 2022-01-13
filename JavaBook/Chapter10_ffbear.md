@@ -128,9 +128,9 @@ Date date = new Date(calendar.getTimeInMillis());
 
 <br><br>
 
-#### 기타 메소드
+#### 기타 메서드
 
-- `boolean isLeapYesr(int year)` : 매개변수가 윤년인지 아닌지 판변해주는 메소드
+- `boolean isLeapYesr(int year)` : 매개변수가 윤년인지 아닌지 판변해주는 메서드
 - `int dayDiff(int y1, int m1, int d1, int y2, int m2, int d2)` : 두 눌짜간의 차이를 일단위로 변환
 - `int getDayOfWeek(int year, int month, int day)` : 지정한 날짜의 요일을 1~7로 반환 (1이 일요일)
 - `String convertDayToDate(int day)` : 일단위의 값을 년월일의 문자열로 변환
@@ -143,7 +143,7 @@ Date date = new Date(calendar.getTimeInMillis());
 숫자나 날짜 등등을 원하는 형식으로 변환하는 것을 도와주는 클래스이다.
 
 ### 2.1 DecimalFormat
-형식화 클래스중 숫자를 형식화할떄 사용하거나 일정한 형식의 텍스트를 숫자로 변환할때 사용한다.
+형식화 클래스중 숫자를 형식화할때 사용하거나 일정한 형식의 텍스트를 숫자로 변환할때 사용한다.
 
 #### 사용되는 기호
 
@@ -209,7 +209,7 @@ Date date = new Date(calendar.getTimeInMillis());
 
 <br>
 
-혹은 `NumberFormat` 에 정의된 `parse(String)` 메소드를 사용해서 문자열에서 숫자로 변환할 수 있다.
+혹은 `NumberFormat` 에 정의된 `parse(String)` 메서드를 사용해서 문자열에서 숫자로 변환할 수 있다.
 
 ```
         DecimalFormat df = new DecimalFormat("0.0");
@@ -221,7 +221,7 @@ Date date = new Date(calendar.getTimeInMillis());
 <br>
 
 ### 2.2 SimpleDateFormat
-날짜를 출력할때 사용하는 메소드이며 좀더 편리하게 출력하게 도와준다. 마찬가지로 추상클래스이기 때문에 `SimpleDateFormat` 
+날짜를 출력할때 사용하는 메서드이며 좀더 편리하게 출력하게 도와준다. 마찬가지로 추상클래스이기 때문에 `SimpleDateFormat` 
 인스턴스를 생성하고 원하는 형식을 넣으면 그에 맞는 형태로 출력된다.
 
 - `G` : 연대 (BC, AD)

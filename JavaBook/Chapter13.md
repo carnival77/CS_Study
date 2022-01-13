@@ -35,7 +35,7 @@ Process 는 실행중인 프로그램을 말하는데 OS 프로세스는 프로�
 ## 2. 쓰레드의 구현과 실행
 `Thread` 클래스를 상속받거나 `Runnable` 인터페이스를 구현하는 방법 2가지가 있는데 `Runnable` 
 인터페이스를 구현하는 방법이 더 재사용성이
-좋은 객체지향적 방법이다. 인터페이스의 구현을 위해서는 추상메서드인 `run()` 메소드만 구현해주면 된다.
+좋은 객체지향적 방법이다. 인터페이스의 구현을 위해서는 추상메서드인 `run()` 메서드만 구현해주면 된다.
 
 <br>
 
@@ -119,8 +119,8 @@ public class ThreadEx1{
 
 
 ## 3. start() 와 run()
-위에 있는 코드를 보면 알수있듯이 쓰레드의 실행은 `run()` 메소드가 아닌  `start()` 메소드의 호출로 이루어진다. 
-왜 각각의 구현한 클래스 내부에 있는 `run()` 메소드가 아닌  `start()` 일까? 
+위에 있는 코드를 보면 알수있듯이 쓰레드의 실행은 `run()` 메서드가 아닌  `start()` 메서드의 호출로 이루어진다. 
+왜 각각의 구현한 클래스 내부에 있는 `run()` 메서드가 아닌  `start()` 일까? 
 
 쓰레드는 6가지 상태 - `NEW`, `RUNNABLE`, `BLOCKED`, `WAITING`, `TIME_WAITING`, `TERMINATED` 가 있는데 
 쓰레드의 실행시 `NEW` 상태가 아니면 `IllegalThreadStateException()` 예외를 호출하며 비정상적으로 종료된다. 
@@ -129,7 +129,7 @@ public class ThreadEx1{
 아니면된다.
 
 여기서 알 수 있는것은 `run()`은 단순히 메서드를 호출하는 반면, `start()`는 쓰레드가 실행가능한지 체크를 한다는 것이다. 
-만약 `start()` 메소드에
+만약 `start()` 메서드에
 의해 실행가능하다고 판단이되면 
 
 1. 새로운 호출 스택(call stack)을 생성하고
@@ -315,7 +315,7 @@ public class ThreadEx3 implements Runnable {
 
 <br>
 
-현재 실행, 대기상태, 즉 작업이 완료되지않은 모든 쓰레드의 호출스택을 출력하려면 `getAllStackTraces()` 메소드를 사용하면 
+현재 실행, 대기상태, 즉 작업이 완료되지않은 모든 쓰레드의 호출스택을 출력하려면 `getAllStackTraces()` 메서드를 사용하면 
 된다.
 
 
@@ -467,7 +467,7 @@ public class ThreadEx3 implements Runnable {
 #### yield()
 
 다음 차례의 쓰레드에게 주어진 실행시간을 양보하는 메서드 이다. 만약 1초의 실행시간을 할당 받은 쓰레드가 0.5초 동안 작업을 수행하고
-`yield()` 메소드가 호출되면 나머지 0.5초 동안은 실행대기상태로 된다. `yield` 와 `interrupt` 를 적절히 사용하면 효율적인
+`yield()` 메서드가 호출되면 나머지 0.5초 동안은 실행대기상태로 된다. `yield` 와 `interrupt` 를 적절히 사용하면 효율적인
 프로그래밍을 할 수 있다. 
 
 
@@ -522,7 +522,7 @@ public class ThreadEx3 implements Runnable {
 #### `notifyAll()`
 기다리던 모든 쓰레드에게 통지를 준다. 하지만 `lock` 을 얻는 쓰레드는 한개다. 
 
-세 메소드 모두 `Object` 에 정의되어 있고 `synchronized` 블록에서만 사용할 수 있다. 
+세 메서드 모두 `Object` 에 정의되어 있고 `synchronized` 블록에서만 사용할 수 있다. 
 
 <br>
 
@@ -531,29 +531,51 @@ public class ThreadEx3 implements Runnable {
 시간을 기다려야 한다. (starvation 현상) 그것을 개선하기 위한 클래스들이다. 
 
 
-#### `Lock`
+### `Lock`
 
 `synchronized` 를 통한 동기화는 자동으로 `lock`을 걸고 푸는 점은 편하지만 같은 메서드 안에서만 걸 수 있다는 단점이 
-있는데 그럴때 `Lock` 을 사용한다.
+있는데 그럴때 `Lock` 을 사용한다. `Lock` 클래스는 3가지가 있다. 
 
-##### `ReentrantLock` 
-특정 조건에서 `lock` 을 풀고 나중에 다시 `lock` 을 얻고 임계영역으로 들어와 이후의 작업을 수행할 수 있게한다. 베타적인
-`lock` 이라서 무조건 `lock` 이 있어야 임계영역의 코드를 수행할 수 있다.
-
-`Condition` 이라는 클래스를 사용해서 
-
-##### `ReentrantReadWriteLock`
-읽기를 위한 `lock`과 쓰기를 위한 `lock`을 제공하며 읽기 `lock` 이 걸려있으면 다른 쓰레드가 읽기 `lock` 을 중복해서
-걸고 읽을 수 있고 쓰기도 마찬가지지만 읽기 `lock` 이 걸려있는데 쓰기 `lock`을 거는것은 불가능하다.
+- ##### `ReentrantLock` 
+    특정 조건에서 `lock` 을 풀고 나중에 다시 `lock` 을 얻고 임계영역으로 들어와 이후의 작업을 수행할 수 있게한다. 베타적인
+    `lock` 이라서 무조건 `lock` 이 있어야 임계영역의 코드를 수행할 수 있다.
 
 
-##### `StampedLock`
-`lock`을 걸거나 해지할때 스탬프를 사용하며 `낙관적 읽기 lock`(Optimistic reading lock) 이 추가되었다. 기존에 
-읽기 `lock` 이 걸려있으면 쓰기 `lock`을 얻기위해서는 읽기 `lock`이 풀릴때까지 기다려야 했지만 `낙관적 읽기 lock` 은
-쓰기 `lock` 에 의해 바로 풀린다. 
+- ##### `ReentrantReadWriteLock`
+    읽기를 위한 `lock`과 쓰기를 위한 `lock`을 제공하며 읽기 `lock` 이 걸려있으면 다른 쓰레드가 읽기 `lock` 을 중복해서
+    걸고 읽을 수 있고 쓰기도 마찬가지지만 읽기 `lock` 이 걸려있는데 쓰기 `lock`을 거는것은 불가능하다.
 
-그래서 낙관적 읽기에 실패하면, 읽기 `lock`을 얻어서 다시 읽어 와야 한다.
-**무조건 읽기 `lock`을 걸지 않고, 쓰기와 읽기가 충돌할 때만 쓰기가 끝난 후에 읽기 `lock`을 거는 것이다.**
+
+- ##### `StampedLock`
+    `lock`을 걸거나 해지할때 스탬프를 사용하며 `낙관적 읽기 lock`(Optimistic reading lock) 이 추가되었다. 기존에 
+    읽기 `lock` 이 걸려있으면 쓰기 `lock`을 얻기위해서는 읽기 `lock`이 풀릴때까지 기다려야 했지만 `낙관적 읽기 lock` 은
+    쓰기 `lock` 에 의해 바로 풀린다. 그래서 낙관적 읽기에 실패하면, 읽기 `lock`을 얻어서 다시 읽어 와야 한다.
+    **무조건 읽기 `lock`을 걸지 않고, 쓰기와 읽기가 충돌할 때만 쓰기가 끝난 후에 읽기 `lock`을 거는 것이다.**
+
+<br>
+
+
+
+`ReentrantLock` 은 boolean 을 매개변수로 받는데 `true` 값을 주면 가장 오래 기다린 쓰레드가 `lock`을 획득할 수 있다.
+그리고 `synchronized` 와 다르게 수동으로 `lock()` 메서드와 `unlock()` 메서드를 통해서 수동으로 `lock` 을 관리해줘야 
+한다. **`lock` 을 걸었다면 푸는 것을 잊지 말것!** `try-catch-finally` 구문을 활용하면 좀더 편하게 관리할 수 있다.
+
+
+기존의 starvation 현상을 방지하게 위해서 `Condition` 클래스의 `await()` , `signal()` 를 사용할 수 있는데 쓰레드를 
+구분하지 않고 공유 객체의 `waiting pool` 에 넣는 `wait()` 와 `notify()` 와는 다르게 각각의 `waiting pool` 을 
+만들어서 기다리게 하므로 기아현상을 줄일수있다.  
+
+<br>
+
+### volatile
+
+요즘 대부분의 멀티 코어 프로세서가 있는 컴퓨터들은 메모리에서 읽어온 값을 캐시에 저장하고 사용하는데 값의 변경 여부는 체크하지않고
+
+
+
+
+
+
 
 <br><br>
 
