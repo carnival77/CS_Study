@@ -278,6 +278,150 @@ Function<Integer, int[]> f2 = int[]::new; // 메서드 참조
 <br>
 
 ## 스트림
+스트림은 기존의 `Collection` 이나 `Iterator` 를 사용해서 데이터를 다룰때 많은 부분을 구현해야 했던 점을 개선하기 위해 나온 인터페이스다. 스트림을 
+사용하면 데이터 소스가 무엇이든 간에 같은 방식으로 다룰수 있으므로 코드의 재사용성이 높아지는 장점이 있다. 
 
+<br>
+
+```
+        String[] arr = {"red", "yellow", "green", "blue", "black"};
+        List<String>  list = Arrays.asList(arr);
+```
+
+<br>
+
+위와 같은 배열이 있을때 스트림의 생성은 다음과 같다.
+
+```
+        Stream<String> streamList = list.stream();
+        Stream<String> streamArr = Arrays.stream(arr);        
+```
+<br>
+
+### 특징
+
+1. **`Stream` 은 데이터를 변경하지 않는다.**
+   
+
+2. **`Stream` 은 일회용이다.**  
+    필요하다면 읽은 결과를 컬렉션이나 배열에 담아서 저장하자.
+   
+
+3. **`Stream` 은 작업을 내부 반복으로 처리한다.**  
+   작업을 내부반복으로 처리하기 때문에 코드가 간결해지는데, 이는 반복문을 메서드의 내부에 숨길 수 있다는 것을 의미한다.
+   
+**ex)**
+```
+        Integer[] nums = {1, 2, 3, 4, 5, 6};
+        List<Integer> sortedNums = Arrays.stream(nums).sorted().collect(Collectors.toList());
+
+        sortedNums.forEach(num -> System.out.println("숫자 : " + num));
+        
+        
+        //-----------------
+        
+        숫자 : 1
+        숫자 : 2
+        숫자 : 3
+        숫자 : 4
+        숫자 : 5
+        숫자 : 6
+
+```
+
+## 스트림의 연산
+스트림으로 읽은 데이터들을 내부에 있는 연산으로 인해서 다양한 작업들을 할 수 있다. 연산은 크게 두 종류가 있다.
+
+- 중간 연산 : 연산 결과가 스트림인 연산. 스트림에 연속해서 중간 연산할 수 있음  
+  - `distinct()` : 중복을 제거
+  - `filter()` : 조건에 안 맞는 요소 제외
+  - `limit()` : 스트림의 일부를 잘라낸다.
+  - `skip()`: 스트림의 일부를 건너뛴다.
+  - `peek()`: 스트림의 요소에 작업수행.
+  - `sorted()`: 스트림의 요소를 정렬한다.
+  - `map()`: 스트림의 요소를 변환한다.
+  
+  <br>
+
+- 최종 연산 : 연산 결과가 스트림이 아닌 연산, 스트림의 요소를 소모하므로 단 한번만 가능
+  - `foreach()` : 각 요소에 지정된 작업 수행
+  - `count()` : 스트림의 요소의 개수 반환
+  - `max()`, `min()`: 스트림의 최대/최소값을 반환
+  - `findAny()`, `findFirst()` : 스트림의 요소 하나를 반환
+  - `allMatch()`, `anyMatch()`, `noneMatch()` : 주어진 조건을 모든 요소가 만족시키는지 아닌지
+  - `toArray()` : 스트림의 모든 요소를 배열로 반환
+  - `reduce()` : 스트림의 요소를 하나씩 줄여 가면서 계산한다.
+  - `collect()` : 스트림의 요소를 수집한다. (주로 그룹화하거나 분할한 결과를 컬렉션에 담을때) 
+
+  <br>
+
+- 스트림의 연산은 최종 연산이 수행되기 전까지는 중간 연산이 수행되지 않는다  →  **지연연산**   
+- 일반적으로 `stream`.`중간연산`.`중간연산`.`중간연산`.`중간연산`.......`최종 연산` 의 형태이다.
+- 기본적으로 스트림은 `wrapper class` 를 타입으로 받지만 `IntStream`, `LongStream` 등등을 사용해서 원시 타입을 넣을 수도 있다.
+
+
+<br>
+
+## 다양한 스트림 만들기
+ 
+
+### 컬렉션
+
+스트림은 `Collection` 패키지에 정의되어 있으므로 컬렉션 클래스들은 `Collection.stream()` 을 통해서 스트림을 생성할 수 있다.  
+
+```
+    //기본형
+    Stream<T> Collection.stream();
+    
+    //List
+    List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+    Stream<Integer> intStream = list.stream();
+
+```
+
+각 요소들에 대한 작업을 할때는 `foreach()` 를  사용할 수 있다.
+```
+    intStream.forEach(System.out::println);
+  
+```
+
+<br>
+
+### 배열
+
+배열의 스트림 생성은 `Stream` 과 `Arrays` 에 정의되어있다.
+
+``` 
+    //기본형
+    Stream<String> stream = Stream.of();    
+    Stream<String> stream = Arrays.stream(T[]);
+    
+    //예시
+    Stream<String> streamArr = Arrays.stream(new String[]{"red", "yellow", "green", "blue", "black"});
+    Stream<String> streamArr = Stream.of("red", "yellow", "green", "blue", "black");
+    
+    //intStream
+    IntStream intStream = IntStream.of(1, 2, 3, 4);
+    
+    int[] nums = {1, 2, 3, 4};
+    IntStream intStream = IntStream.of(nums);
+    IntStream intStream = Arrays.stream(nums);
+    
+```
+
+<br>
+
+- `IntStream` 과  `LongStream` 은  `range()` 와 `rangeClosed()` 메서드를 통해 **특정 범위의 연속된 정수**로 스트림을 만들 수 있다.
+  - `range()` 는 마지막 원소 포함 ❌ - `rangeClosed()`는 포함 ⭕️ 
+  
+
+- `Stream.empty()` 를 통해서 빈 스트림도 만들 수 있다.
+- 타입이 같은 두 스트림은 `concat()` 메서드ㄹ를 사용해서 하나도 연결할 수 있다.
+
+<br>
+
+## 스트림의 중간연산
 
 <br><br>
+
+
