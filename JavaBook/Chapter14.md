@@ -329,45 +329,12 @@ Function<Integer, int[]> f2 = int[]::new; // 메서드 참조
 
 ```
 
-## 스트림의 연산
-스트림으로 읽은 데이터들을 내부에 있는 연산으로 인해서 다양한 작업들을 할 수 있다. 연산은 크게 두 종류가 있다.
-
-- 중간 연산 : 연산 결과가 스트림인 연산. 스트림에 연속해서 중간 연산할 수 있음  
-  - `distinct()` : 중복을 제거
-  - `filter()` : 조건에 안 맞는 요소 제외
-  - `limit()` : 스트림의 일부를 잘라낸다.
-  - `skip()`: 스트림의 일부를 건너뛴다.
-  - `peek()`: 스트림의 요소에 작업수행.
-  - `sorted()`: 스트림의 요소를 정렬한다.
-  - `map()`: 스트림의 요소를 변환한다.
-  
-  <br>
-
-- 최종 연산 : 연산 결과가 스트림이 아닌 연산, 스트림의 요소를 소모하므로 단 한번만 가능
-  - `foreach()` : 각 요소에 지정된 작업 수행
-  - `count()` : 스트림의 요소의 개수 반환
-  - `max()`, `min()`: 스트림의 최대/최소값을 반환
-  - `findAny()`, `findFirst()` : 스트림의 요소 하나를 반환
-  - `allMatch()`, `anyMatch()`, `noneMatch()` : 주어진 조건을 모든 요소가 만족시키는지 아닌지
-  - `toArray()` : 스트림의 모든 요소를 배열로 반환
-  - `reduce()` : 스트림의 요소를 하나씩 줄여 가면서 계산한다.
-  - `collect()` : 스트림의 요소를 수집한다. (주로 그룹화하거나 분할한 결과를 컬렉션에 담을때) 
-
-  <br>
-
-- 스트림의 연산은 최종 연산이 수행되기 전까지는 중간 연산이 수행되지 않는다  →  **지연연산**   
-- 일반적으로 `stream`.`중간연산`.`중간연산`.`중간연산`.`중간연산`.......`최종 연산` 의 형태이다.
-- 기본적으로 스트림은 `wrapper class` 를 타입으로 받지만 `IntStream`, `LongStream` 등등을 사용해서 원시 타입을 넣을 수도 있다.
-
-
-<br>
 
 ## 다양한 스트림 만들기
- 
 
 ### 컬렉션
 
-스트림은 `Collection` 패키지에 정의되어 있으므로 컬렉션 클래스들은 `Collection.stream()` 을 통해서 스트림을 생성할 수 있다.  
+스트림은 `Collection` 패키지에 정의되어 있으므로 컬렉션 클래스들은 `Collection.stream()` 을 통해서 스트림을 생성할 수 있다.
 
 ```
     //기본형
@@ -412,15 +379,151 @@ Function<Integer, int[]> f2 = int[]::new; // 메서드 참조
 <br>
 
 - `IntStream` 과  `LongStream` 은  `range()` 와 `rangeClosed()` 메서드를 통해 **특정 범위의 연속된 정수**로 스트림을 만들 수 있다.
-  - `range()` 는 마지막 원소 포함 ❌ - `rangeClosed()`는 포함 ⭕️ 
-  
+  - `range()` 는 마지막 원소 포함 ❌ - `rangeClosed()`는 포함 ⭕️
+
 
 - `Stream.empty()` 를 통해서 빈 스트림도 만들 수 있다.
 - 타입이 같은 두 스트림은 `concat()` 메서드ㄹ를 사용해서 하나도 연결할 수 있다.
 
 <br>
 
+
+## 스트림의 연산
+스트림으로 읽은 데이터들을 내부에 있는 연산으로 인해서 다양한 작업들을 할 수 있다. 연산은 크게 두 종류가 있다.
+
+- 중간 연산 : 연산 결과가 스트림인 연산. 스트림에 연속해서 중간 연산할 수 있음  
+  - `distinct()` : 중복을 제거
+  - `filter()` : 조건에 안 맞는 요소 제외
+  - `limit()` : 스트림의 일부를 잘라낸다.
+  - `skip()`: 스트림의 일부를 건너뛴다.
+  - `peek()`: 스트림의 요소에 작업수행.
+  - `sorted()`: 스트림의 요소를 정렬한다.
+  - `map()`: 스트림의 요소를 변환한다.
+  
+  <br>
+
+- 최종 연산 : 연산 결과가 스트림이 아닌 연산, 스트림의 요소를 소모하므로 단 한번만 가능
+  - `foreach()` : 각 요소에 지정된 작업 수행
+  - `count()` : 스트림의 요소의 개수 반환
+  - `max()`, `min()`: 스트림의 최대/최소값을 반환
+  - `findAny()`, `findFirst()` : 스트림의 요소 하나를 반환
+  - `allMatch()`, `anyMatch()`, `noneMatch()` : 주어진 조건을 모든 요소가 만족시키는지 아닌지
+  - `toArray()` : 스트림의 모든 요소를 배열로 반환
+  - `reduce()` : 스트림의 요소를 하나씩 줄여 가면서 계산한다.
+  - `collect()` : 스트림의 요소를 수집한다. (주로 그룹화하거나 분할한 결과를 컬렉션에 담을때) 
+
+  <br>
+
+- 스트림의 연산은 최종 연산이 수행되기 전까지는 중간 연산이 수행되지 않는다  →  **지연연산**   
+- 일반적으로 `stream`.`중간연산`.`중간연산`.`중간연산`.`중간연산`.......`최종 연산` 의 형태이다.
+- 기본적으로 스트림은 `wrapper class` 를 타입으로 받지만 `IntStream`, `LongStream` 등등을 사용해서 원시 타입을 넣을 수도 있다.
+
+
+<br>
+
+
 ## 스트림의 중간연산
+
+### 스트림 자르기
+  - `skip(long n)` : n 만큼의 요소를 건너뛴다.
+  - `limit(long n)` : 스트림의 요소를 n개로 제한한다.
+    > `stream.skip(3).limit(5)` 를 하면 4벙 요소부터 8번 요소를 가진 스트림을 반환한다.
+    > 
+
+<br>
+
+### 스트림 요소 걸러내기
+  - `filter()` : 중복된 요소를 제거한다.
+    ```
+        IntStream intStream = IntStream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        intStream.filter(i -> i > 5).forEach(System.out::print);
+    
+        //678910
+        //5 이상인 숫자만 출력되었다. 
+
+    ```    
+    `.filter().filter().filter() ...` 처럼 여러 조건을 추가할 수 있다.
+    
+    <br>
+
+
+  - `distict()` : 주어진 조건에 맞지 않는 요소를 걸러낸다.
+    ```
+        IntStream intStream = IntStream.of(1, 2, 3, 4, 3, 2, 1, 1, 1);
+        intStream.distinct().forEach(System.out::print);
+        
+        //1234
+        //중복된 원소를 제거한 값이 출력된다.
+    
+    ```
+
+  <br>
+
+  - `sorted()` : 지정된 `Comparator` 로 정렬한다.
+    
+    ```
+        Stream<String> strStream = Stream.of("aaa", "aab", "bbb", "ccc", "ddd");
+    
+        //1    
+        strStream.sorted().forEach(System.out::println);
+    
+        //2
+        strStream.sorted(Comparator.naturalOrder()).forEach(System.out::println);
+    
+        //3
+        strStream.sorted(String::compareTo).forEach(System.out::println);
+    
+        //4
+        strStream.sorted((s1, s2) -> s1.compareTo(s2)).forEach(System.out::println);
+        
+    
+        //aaa
+        //aab
+        //bbb
+        //ccc
+        //ddd
+    
+    ```
+
+    - 역순은  `strStream.sorted(Comparator.reverseOrder())`
+
+    <br>
+    
+  - `map()` : 스트림의 요소에 저장된 값 중 원하는 값을 뽑아내거나 변환할때 사용한다.
+    ```
+    
+        Stream<String> strStream = Stream.of("aaa", "aab", "bbb", "ccc", "ddd");
+        strStream.map(String::toUpperCase).forEach(System.out::println);
+    
+        //AAA
+        //AAB
+        //BBB
+        //CCC
+        //DDD
+    
+    ```
+    
+  <br>
+    
+  - `peek()` : 연산과 연산 사이에 올바르게 처리되었는지 확인하고 싶을때 사용
+    ```
+        IntStream is = IntStream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        is.filter(i -> i > 2)
+          .peek(i -> System.out.println("peek : " + i))
+          .filter(i -> i == 9).forEach(System.out::println);
+      
+    
+        //peek : 3
+        //peek : 4
+        //peek : 5
+        //peek : 6
+        //peek : 7
+        //peek : 8
+        //peek : 9
+        //9
+        //peek : 10
+          
+    ```
 
 <br><br>
 
