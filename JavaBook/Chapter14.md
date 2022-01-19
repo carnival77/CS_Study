@@ -524,6 +524,43 @@ Function<Integer, int[]> f2 = int[]::new; // 메서드 참조
         //peek : 10
           
     ```
+    
+    <br>
+    
+  - `mapToInt()`, `mapToLong()`, `mapToDouble()` : 일반적인 Stream 객체를 원시 스트림으로 바꾸거나 그 반대로 하는 
+    작업이 필요한 경우 사용한다. 원시 객체를 일반적인 스트림으로 변환할때는 `mapToObj()` 를 사용한다. 
+    
+    ```
+    
+      Double[] nums = {1.0, 2.0, 3.0, 4.0};
+      Stream.of(nums).mapToInt(Double::intValue).forEach(System.out::println);
+      
+      //1
+      //2
+      //3
+      //4
+    
+    ```
+
+    <br>
+    
+    > Stream<String> -> IntStream 변환할때 -> mapToInt(Integer::parseInt)
+    > Stream<Integer> -> IntStream 변환할때 -> mapToInt(Integer::intValue)
+
+    <br>
+    
+- `flatMap()` : 스트림의 요소가 배열이거나 `map()` 의 결과가 배열인 경우 `Stream<T>` 의 형태로 만들때 사용한다.  
+  `map()` 을 사용하면 배열들의 스트림으로 만들지만 `flatMap()`은 스트림의 스트림으로 만들어 준다.
+  
+  ```
+     //map
+     Stream<Stream<String>> strStream = strArrStrm.map(Arrays::stream);
+      
+     //flatmap
+     Stream<String> strStream = strArrStrm.flatmap(Arrays::stream);
+   
+  ```
+  
 
 <br><br>
 
