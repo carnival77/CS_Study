@@ -560,7 +560,58 @@ Function<Integer, int[]> f2 = int[]::new; // 메서드 참조
      Stream<String> strStream = strArrStrm.flatmap(Arrays::stream);
    
   ```
-  
+
+<br>
+
+### 스트림의 최종 연산
+최종 연산은 스트림의 요소를 사용해서 만들기 때문에 최종연산후 스트림은 닫히고 다시 사용할 수 없다. 
+
+#### `forEach()`
+- `peek()` 와 다르게 스트림의 요소를 소모한다.
+- 반환 타입이 `void`이므로 요소를 출력하는 용도로 주로 사용한다.
+
+<br>
+
+#### 조건 검사
+- `allMatch()`, `anyMatch()`, `noneMatch()`, `findFirst()`, `findAny()`
+- 지정된 조건들에 대해 모든요소가 일치하는지, 일부가 일치하지 않는지 등을 확인하는데 사용한다.
+- 매개변수로 `predicate` 을, 리턴값이 `boolean` 이다.
+
+
+<br>
+
+#### 통계
+- `count()`, `sum()`, `average()`, `max()`, `min()`
+- `IntStream` 같은 기본형 스트림에 대해서 통계 정보를 얻을 수 있는 메서드이다.
+- 기본형 스트림이 아닌 경우에는 `max()`, `min()`, `count()` 만 존재한다.
+
+<br>
+
+#### `reduce()`
+- 스트림의 요소를 줄여나가면서 연산을 수행학 결과를 반환하는 메서드이다.
+- 두요소를 가지고 연산한 결과를 가지고 다음 요소와 연산한다. 
+
+<br>
+
+#### `collect()`
+- 스트림의 요소를 수집할때 어떻게 수집할지를 정의하는 메서드이다. 
+- 스트림을 컬렉션과 배열로 변환할때는 `toList()`, `toSet()`, `toMap()`, `toCollection()`, `toArray()` 를 사용한다.
+- 통계정보와 리듀싱도 가능하며 스트림의 모든 요소를 하나의 문자열로 반환하는 `joining()` 이 존재한다. 
+- 스트림의 요소를 특정 기준으로 그룹화 하는 `groupingBy()`, `partitioningBy()` 이 존재한다. 
+  - `groupingBy()` 는 스트림의 요소를 `Function()`으로, `partitioningBy()`은 `Predicate()`로 분류한다는 점만 다르다.
+
+<br>
+
+## Collector 구현하기
+컬렉터를 작성한다는 것은 `Collector` 인터페이스를 구현하는 것과 같다. 구현해야 하는 메서듣 5개가 있다.
+
+- `supplier()` : 작업 결과를 저장할 공간을 제공
+- `accumulator()` : 스트림의 요쇼를 수집할 방법을 제공
+- `combiner()` : 두 저장공간을 병합할 방법을 제공
+- `finisher()` : 결과를 최종적으로 변환할 방법을 제공
+
+위의 4가지 메서드는 반환 타입이 함수형 인터페이스 이므로 4개의 람다식을 작성해야한다. 마지막 메서드인 `Characteristics()` 는 
+컬렉터의 특성이 담긴 set 을 반환한다. 
 
 <br><br>
 
